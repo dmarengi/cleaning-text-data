@@ -49,7 +49,7 @@ check_distinct <- function(data) {
   # Extract existing data types for each column and store as character vector
   col_types <- map_chr(data, class)
   
-  # Helper function to replace NA values and sort the distinct values
+  # Helper function to replace NA values with "." and sort the distinct values
   str_clean <- function(x) str_sort(str_replace_na(unique(x), replacement = "."))
   
   # Create data frame view to summarize the messy data
@@ -164,7 +164,7 @@ new_data <- new_data |>
 check_distinct(new_data)
 
 # What did that code just do? 
-# Using the 'across()' function and 'matches()' select helper function (both from dplyr), 
+# Using the 'dplyr::across()' function and 'dplyr::matches()'-- a select() helper function--
 # we update existing columns in place using mutate(). Specifically, we look across 
 # the column names in our data and find those with names that match our regex
 # pattern ("gad.*[1-2]"). For all columns in our dataset that match the specified
